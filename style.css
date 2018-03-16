@@ -1,0 +1,195 @@
+*, input, select, textarea {
+	font-family: Georgia, sans;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+body {
+	display: flex;
+	flex-direction: row;
+}
+
+textarea, input {
+	border: 1px solid gray;
+	border-radius: 2px;
+	padding: 2px;
+}
+
+#application {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+
+.hidden {
+	display: none;
+}
+
+/****************************BUTTONS****************************/
+
+.button {
+	color: gray;
+	cursor: pointer;
+	text-align:center;
+	-moz-user-select: -moz-none;
+   	-webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#button-box {
+	position: fixed;
+	display: flex;
+	flex-direction: row;
+	top: 15px;
+	right: 15px;
+	font-size: 32px;
+	z-index: 20;
+	background-color: white;
+	border: 1px solid gray;
+	border-radius: 2px;
+	box-shadow: 1px 1px 1px gray;
+	padding: 10px;
+}
+
+#button-box .button {
+	margin-left: 5px;
+	color: #FE7510;
+}
+
+.button:hover {
+	color: #6666FF;	
+}
+
+.tab-buttons {
+	margin-top: 15px;
+	display: flex;
+	flex-direction: row;
+}
+
+.tab-button {
+	position: relative;
+	margin-left: 15px;
+	border: 2px solid gray;
+	border-radius: 2px;
+	padding: 5px;
+	background-color: white;
+}
+
+/****************************SIDEBAR****************************/
+
+#left-container {
+	width: 250px;
+	height: 100vh;
+}
+
+#sidebar {
+	position: fixed;
+	top: 0px;
+	height: 100vh;
+	width: 250px;
+	padding: 15px;
+	background-color: #DDDDDD;
+	border-right: 1px solid gray;
+	
+}
+.sidebar-element {
+	margin-top: 15px;
+}
+
+.sidebar-label {
+	font-weight: bold;
+	color: #FE7510;
+}
+
+.sidebar-input {
+	background-color: #DDDDDD;
+	border: none;
+	width: 230px;
+	max-width: 230px;
+	resize:none;
+}
+
+.sidebar-input:hover {
+	background-color: white;
+}
+
+/****************************TABS****************************/
+
+.tab {
+}
+
+.tab-content {
+	flex-direction: column;
+	margin: 35px;
+	position: relative;
+	margin-bottom: 100px;
+}
+
+/****************************CLAIMS****************************/
+
+#claim-content {
+	width: 600px;
+	margin-top: 50px;
+}
+
+.claim {
+	counter-increment: claim_counter;
+	margin-top: 15px;
+	border-left: 2px solid #D3D3D3;
+}
+
+.claim-number {
+	position: absolute;
+	left: -40px;
+	background-color: white;
+}
+
+.claim-number:before {
+	content: counter(claim_counter) '.';
+	border-radius: 5px;
+	border: 6px solid white;
+	padding: 2px;
+	font-weight: bold;
+	background-color: white;
+	cursor: pointer;
+}
+
+.claim-number-header:after {
+	content: ' ' counter(claim_counter);
+}
+
+.feature {
+	padding: 3px;
+}
+
+.feature-component, .step-component, .component-name {
+	width: 230px;
+}
+
+.claim:hover > .number {
+	color: blue;
+	font-weight: bold;
+}
+
+.claim-buttons {
+	position: absolute;
+	top: 2px;
+	right: 2px;
+	display: none;
+	flex-direction: row;	
+}
+
+.features {
+	position: relative;
+}
+
+.features:hover > .claim-buttons {
+	display: flex;
+}
+
+.features:hover, .features:hover ~ .children {
+	background-color: #f9f9f9;
+}

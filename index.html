@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en" xmlns= "http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>Patent Demo</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Language" content="en">
+	<meta name="google" content="notranslate" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.css" rel="stylesheet">
+	<script src="https://use.fontawesome.com/efdaf63156.js"></script>
+	<link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+	<div id="application">
+		<div id="button-box">
+			<i id='spec-button' class="fa fa-print button " title='Print Specification and Drawings' @click="print"></i>
+		</div>
+
+		<div id='left-container'>
+			<info :model.sync="app.info"></info>
+		</div>
+
+		<div id="right-container">
+	    	<claims :model.sync='app.claims'></claims>
+		</div>
+	
+	</div>
+
+<!-- ****************************** Sidebar ****************************** -->
+
+	<script type="text/x-template" id="info-template">	
+		<div id='sidebar'>
+			<div class='sidebar-element'>
+				<div class='sidebar-label'>Title</div>
+				<textarea class='sidebar-input' v-model="model.title" rows='3' placeholder="Title of the invention"></textarea>
+			</div>
+
+			<div class='sidebar-element'>
+				<div class='sidebar-label'>Field of the Invention</div>
+				<textarea class='sidebar-input' v-model="model.field" rows='2' placeholder="The present invention relates generally to ..."/></textarea>
+			</div>
+
+			<div class='sidebar-element'>
+				<div class='sidebar-label'>Description</div>
+				<textarea class='sidebar-input' v-model="model.description" rows='3' placeholder="The present invention relates specifically to ..."/></textarea>
+			</div>
+
+		</div>
+	</script>
+
+
+
+<!-- ****************************** Claims ****************************** -->
+
+	<script type="text/x-template" id="claims-template">
+		<div id='claims' class='tab'>
+			<div id="claim-content" class='tab-content' type="claims">
+	        	<claim v-for="(claim, index) in model" :model.sync="claim" ref="children"
+	    	  		@up="moveChild(index, index - 1)"
+					@down="moveChild(index, index + 1)"
+					@right="demoteChild(index)"
+					@left="$emit('promote-child', index)"
+					@promote-child="gc=>promoteChild(index, gc)"
+					@delete-claim="deleteChild(index)">
+				</claim>
+
+				<div class='tab-buttons'>
+	        		<div id='add-claim-button' class="button tab-button" title='Add Claim' @click="newClaim">Add Claim</div>
+	        	</div>
+	        </div>
+	    </div>
+	</script>
+
+	<script type="text/x-template" id="claim-template">
+		<div class='claim'>
+			
+			<div class='claim-number' @click="select"></div>
+		
+			<div class='features'>
+				<feature v-for='(feature, index) in model.features' :model.sync="feature" ref="features"
+					@select="select"
+					@up="$emit('up')"
+					@down="$emit('down')"
+					@left="$emit('left')"
+					@right="$emit('right')"
+					@new-line="newFeature" 
+					@delete-line="deleteFeature(index)">
+				</feature>
+				
+				<div class='claim-buttons'>
+					<i class="fa fa-times button claim-delete-button" title='Delete Claim' @click="$emit('delete-claim')"></i>
+					<i class="fa fa-plus button claim-child-button" title='Add Child Claim' @click="addChild(false)"></i>
+				</div>
+
+			</div>
+			
+			<div class='children'>
+				<claim v-for="(child, index) in model.children" :model.sync="child" dependent='true' ref="children"
+					@flowchart="flowchart"
+					@up="moveChild(index, index - 1)"
+					@down="moveChild(index, index + 1)"
+					@right="demoteChild(index)"
+					@left="$emit('promote-child', index)"
+					@promote-child="gc=>promoteChild(index, gc)"
+					@delete-claim="deleteChild(index)">
+				</claim>
+			</div>
+
+		</div>
+	</script>
+
+	<script type="text/x-template" id="feature-template">
+		<div class='feature' contenteditable="true" v-on:blur="update" v-focus
+			@focus="select"
+			@keydown.up.shift.prevent="$emit('up')"
+			@keydown.down.shift.prevent="$emit('down')"
+			@keydown.left.shift.prevent="$emit('left')"
+			@keydown.right.shift.prevent="$emit('right')"
+			@keydown.enter.prevent="$emit('new-line')"
+			@keydown.delete.shift.prevent="$emit('delete-line')">
+			{{ model.text }}
+		</div>
+	</script>
+		       
+<!-- ****************************** JS Resources ****************************** -->
+
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script type="text/javascript" src="defaults.js"></script>
+	<script type="text/javascript" src="controller.js"></script>
+</body>
+</html>
