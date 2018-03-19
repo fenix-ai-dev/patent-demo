@@ -76,7 +76,7 @@
 	<script type="text/x-template" id="claim-template">
 		<div class='claim'>
 			
-			<div class='claim-number' @click="select"></div>
+			<div class='claim-number'></div>
 		
 			<div class='features'>
 				<feature v-for='(feature, index) in model.features' :model.sync="feature" ref="features"

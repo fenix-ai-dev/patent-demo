@@ -73,14 +73,7 @@ Vue.component('claim', {
 		this.model.children = this.model.children || [];
 		this.model.features = this.model.features || [];
 		this.model.category = 'process';
-		//event handlers
-		this.$eventHub.$on('unselect-claim', this.unselect);
 	},
-	mounted: function () {
-		this.$nextTick(function () {
-			this.$eventHub.$emit('unselect-claim');
-		})
-	}
 })
 
 Vue.component('feature',{
@@ -100,7 +93,6 @@ Vue.component('feature',{
 	created: function(){
 		this.model.text = this.model.text || '';
 		this.model.components = this.model.components || ['application component'];
-		this.model.selected = false;
 	},
 })
 
@@ -176,10 +168,10 @@ var application = new Vue({
 	},
 	methods: {
 		print: function(){
-			console.log('get specification');
+			console.log('get application documents');
 			var demo_app = processApp(this.app);
 			console.log(demo_app);
-			//getApp(demo_app);
+			getApp(demo_app);
 		},
 	},
 	created: function() {
@@ -304,9 +296,44 @@ function processApp(app){
 			demo_app.info.key = app.info.key
 	})
 
-	demo_app.claims = app.claims;
+	demo_app.figures = [block_diagram];
+	var components = [];
 
-	return demo_app;
+	demo_app.claims = app.claims;
+	demo_app.claims.forEach(indep_claim =>{
+		var flowchart = {
+			"category": "flowchart",
+			"description": "a process for {DESCRIPTION}",
+			"steps": indep_claim.features,
+		}
+
+		indep_claim.features.forEach(feature => {
+			feature.components.forEach(component => {
+				if (components.indexOf(component) < 0)
+					components.push(component);
+			})
+		})
+
+		demo_app.figures[0].components[0].children[1].children = components.map(component => {return {name: component}});
+		demo_app.figures.push(flowchart);
+	})
+
+	var app_string = JSON.stringify(demo_app).replace(/{DESCRIPTION}/g, demo_app.info.description);
+
+	return JSON.parse(app_string);
+}
+
+var block_diagram = {
+	"category": "diagram",
+	"description": "a block diagram of a computing device",
+	"components": [{
+		"name": "computing device",
+		"children": [
+			{"name": "processor"}, 
+			{"name": "application component", "children": []}, 
+			{"name": "memory"}
+		]
+	}],
 }
 
 var demo_app_base = {
@@ -320,58 +347,14 @@ var demo_app_base = {
 	},
 	"parts": [{
 		"sentences": ["A processor may include an intelligent hardware device, (e.g., a general-purpose processing component, a DSP, a CPU, a microcontroller, an ASIC, an FPGA, a programmable logic device, a discrete gate or transistor logic component, a discrete hardware component, or any combination thereof). In some cases, the processor may be configured to operate a memory array using a memory controller. In other cases, a memory controller may be integrated into processor. The processor may be configured to execute computer-readable instructions stored in a memory to perform various functions. In some examples, a processor may include special purpose components for modem processing, baseband processing, digital signal processing, or transmission processing. In some examples, the processor may comprise a system-on-a-chip."],
-		"selected": true,
 		"topic": "processor",
 		"type": "detail",
 		"figure": "1"
 	}, {
 		"sentences": ["Memory may include RAM, ROM, or a hard disk. The memory may be solid state or a hard disk drive, and may include store computer-readable, computer-executable software including instructions that, when executed, cause a processor to perform various functions described herein. In some cases, the memory may contain, among other things, a BIOS which may control basic hardware or software operation such as the interaction with peripheral components or devices. In some cases, a memory controller may operate memory cells as described herein. In some cases, memory controller may include a row decoder, column decoder, or both. In some cases, memory cells within a memory may store information in the form of a logical state."],
-		"selected": true,
 		"topic": "memory",
 		"type": "detail",
 		"figure": "1"
-	}],
-	"claims": [{
-		"features": [{
-			"text": "do a first thing",
-			"components": ["component"],
-			"selected": false
-		}, {
-			"text": "do a second thing",
-			"components": ["component"],
-			"selected": true
-		}],
-		"children": [],
-		"variations": ["method"],
-		"category": "process",
-		"selected": true
-	}],
-	"figures": [{
-		"category": "diagram",
-		"description": "a block diagram of a computing device",
-		"text": [],
-		"components": [{
-			"name": "computing device",
-			"children": [{
-				"name": "processor",
-				"children": []
-			}, {
-				"name": "application component",
-				"children": []
-			}, {
-				"name": "memory",
-				"children": []
-			}]
-		}],
-		"steps": [],
-		"selected": false
-	}, {
-		"category": "flowchart",
-		"description": "a process for {DESCRIPTION}",
-		"text": [],
-		"components": [],
-		"steps": [],
-		"selected": false
 	}],
 	"acronyms": [{
 		"abbreviation": "RAM",
@@ -386,6 +369,7 @@ var demo_app_base = {
 		"abbreviation": "FPGA",
 		"definition": "field programmable gate array"
 	}],
+	"figures": [],
 	"configuration": {
 		"numbering": "true",
 		"indent": "0",
