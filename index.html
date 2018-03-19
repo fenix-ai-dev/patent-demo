@@ -80,7 +80,6 @@
 		
 			<div class='features'>
 				<feature v-for='(feature, index) in model.features' :model.sync="feature" ref="features"
-					@select="select"
 					@up="$emit('up')"
 					@down="$emit('down')"
 					@left="$emit('left')"
@@ -91,14 +90,13 @@
 				
 				<div class='claim-buttons'>
 					<i class="fa fa-times button claim-delete-button" title='Delete Claim' @click="$emit('delete-claim')"></i>
-					<i class="fa fa-plus button claim-child-button" title='Add Child Claim' @click="addChild(false)"></i>
+					<i class="fa fa-plus button claim-child-button" title='Add Dependent Claim' @click="addChild(false)"></i>
 				</div>
 
 			</div>
 			
 			<div class='children'>
 				<claim v-for="(child, index) in model.children" :model.sync="child" dependent='true' ref="children"
-					@flowchart="flowchart"
 					@up="moveChild(index, index - 1)"
 					@down="moveChild(index, index + 1)"
 					@right="demoteChild(index)"
@@ -113,7 +111,6 @@
 
 	<script type="text/x-template" id="feature-template">
 		<div class='feature' contenteditable="true" v-on:blur="update" v-focus
-			@focus="select"
 			@keydown.up.shift.prevent="$emit('up')"
 			@keydown.down.shift.prevent="$emit('down')"
 			@keydown.left.shift.prevent="$emit('left')"

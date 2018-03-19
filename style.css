@@ -123,7 +123,7 @@ textarea, input {
 
 .tab-content {
 	flex-direction: column;
-	margin: 35px;
+	margin: 50px;
 	position: relative;
 	margin-bottom: 100px;
 }
@@ -192,4 +192,8 @@ textarea, input {
 
 .features:hover, .features:hover ~ .children {
 	background-color: #f9f9f9;
+}
+
+.children {
+	padding-left: 15px;
 }
