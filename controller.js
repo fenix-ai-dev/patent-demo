@@ -290,11 +290,14 @@ function featureComponent(text){
 }
 
 function processApp(app){
+	var time = Date.now();
 	var demo_app = demo_app_base;
 	Object.keys(app.info).forEach(key => {
 		if (app.info.key)
 			demo_app.info.key = app.info.key
 	})
+
+	demo_app.info.identifier = "DEMO_" + time;
 
 	demo_app.figures = [block_diagram];
 	var components = [];
@@ -339,7 +342,6 @@ var block_diagram = {
 var demo_app_base = {
 	"info": {
 		"client": "Demo",
-		"identifier": "DEMO_001",
 		"title": "{title of the invention}",
 		"field": "{field of the invention}",
 		"description": "{description of the invention}",
