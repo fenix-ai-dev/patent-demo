@@ -342,10 +342,10 @@ var block_diagram = {
 var demo_app_base = {
 	"info": {
 		"client": "Demo",
-		"title": "{title of the invention}",
-		"field": "{field of the invention}",
-		"description": "{description of the invention}",
-		"inventor": "{inventor}",
+		"title": "[[Demo Title]]",
+		"field": "[[field of the invention]]",
+		"description": "[[description of the invention]]",
+		"inventor": "[[inventor]]",
 	},
 	"parts": [{
 		"sentences": ["A processor may include an intelligent hardware device, (e.g., a general-purpose processing component, a DSP, a CPU, a microcontroller, an ASIC, an FPGA, a programmable logic device, a discrete gate or transistor logic component, a discrete hardware component, or any combination thereof). In some cases, the processor may be configured to operate a memory array using a memory controller. In other cases, a memory controller may be integrated into processor. The processor may be configured to execute computer-readable instructions stored in a memory to perform various functions. In some examples, a processor may include special purpose components for modem processing, baseband processing, digital signal processing, or transmission processing. In some examples, the processor may comprise a system-on-a-chip."],
@@ -378,7 +378,7 @@ var demo_app_base = {
 		"font": "Times New Roman",
 		"header": " ",
 		"footer": "Attorney Docket No. DEMO_001",
-		"template": "1YX9yCCXqeqlbgvO6vL2Of_EO0HJGsM4a",
+		"template": "1NrOJVVSYyUf_N-q9EH1Fvfu8xn7EN-oi", 
 		"transition": "in some cases",
 		"conclusion": "in accordance with aspects of the present disclosure",
 		"flowchart": "In some examples, these operations may be performed by a processor executing a set of codes to control functional elements of an apparatus. Additionally or alternatively, the processes may be performed using special-purpose hardware. Generally, these operations may be performed according to the methods and processes described in accordance with aspects of the present disclosure. For example, the operations may be composed of various substeps, or may be performed in conjunction with other operations described herein.",
@@ -409,7 +409,7 @@ var demo_app_base = {
 			"prefix": "means for"
 		}],
 		"device": [],
-		"drawings": "1jZfm-gyWC1XbyiREGhSvZmG_v8f7JHDH",
+		"drawings": "1JxSs742bN5-RfN1wf9eS0ZW8gDoN_zST", //https://drive.google.com/file/d/1JxSs742bN5-RfN1wf9eS0ZW8gDoN_zST/
 		"summary": "long",
 	}
 }

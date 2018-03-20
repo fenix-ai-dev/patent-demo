@@ -130,6 +130,18 @@ textarea, input {
 
 /****************************CLAIMS****************************/
 
+.text-box {
+	position: relative;
+	top: 15px;
+	left: 15px;
+	width: 800px;
+	border: 1px solid gray;
+	border-radius: 2px;
+	padding: 15px;
+	box-shadow: 1px 1px 1px gray;
+
+}
+
 #claim-content {
 	width: 600px;
 	margin-top: 50px;
