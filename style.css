@@ -132,8 +132,7 @@ textarea, input {
 
 .text-box {
 	position: relative;
-	top: 15px;
-	left: 15px;
+	margin: 15px;
 	width: 800px;
 	border: 1px solid gray;
 	border-radius: 2px;
