@@ -399,7 +399,7 @@ var demo_app_base = {
 
 function processApp(app){
 	var time = Date.now();
-	var demo_app = demo_app_base;
+	var demo_app = Object.assign(demo_app_base);
 	Object.keys(app.info).forEach(key => {
 		if (app.info.key)
 			demo_app.info.key = app.info.key
