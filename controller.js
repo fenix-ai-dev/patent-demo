@@ -171,7 +171,10 @@ var application = new Vue({
 			console.log('get application documents');
 			var demo_app = processApp(this.app);
 			console.log(demo_app);
-			getApp(demo_app);
+			if (demo_app.info.user)
+				getApp(demo_app);
+			else
+				alert('please sign in');
 		},
 	},
 	created: function() {
@@ -403,7 +406,7 @@ function processApp(app){
 	})
 
 	demo_app.info.identifier = "DEMO_" + time;
-
+	demo_app.info.user = profile.getEmail();
 	demo_app.figures = [block_diagram];
 	var components = [];
 
