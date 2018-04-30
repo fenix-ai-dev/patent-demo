@@ -408,6 +408,7 @@ function processApp(app){
 	demo_app.info.identifier = "DEMO_" + time;
 	demo_app.info.user = profile.getEmail();
 	demo_app.figures = [block_diagram];
+	
 	var components = [];
 
 	demo_app.claims = app.claims;
