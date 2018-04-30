@@ -252,11 +252,12 @@ function clone(object){
 ///////////////////////////////////////////////// DEMO //////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+var profile;
 onSignIn();
 
 function onSignIn(googleUser) {
     // Useful data for your client-side scripts:
-    var profile = googleUser.getBasicProfile();
+    profile = googleUser.getBasicProfile();
     console.log("ID: " + profile.getId()); // Don't send this directly to your server!
     console.log('Full Name: ' + profile.getName());
     console.log('Given Name: ' + profile.getGivenName());
@@ -269,10 +270,8 @@ function onSignIn(googleUser) {
     console.log("ID Token: " + id_token);
 };
 
-var vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
-var articles = ['a', 'the', 'an', 'each','one', 'at', 'another', 'said'];
-
 function gerund(verb) {
+	var vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
 	var last = verb.charAt(verb.length - 1).toLowerCase();
 	var second_last = verb.charAt(verb.length - 2).toLowerCase();
 	var third_last = verb.charAt(verb.length - 3).toLowerCase();
@@ -296,6 +295,7 @@ function gerund(verb) {
 }
 
 function featureComponent(text){
+	var articles = ['a', 'the', 'an', 'each','one', 'at', 'another', 'said'];
 	text = text || '';
 	words = text.trim().split(' ');
 
