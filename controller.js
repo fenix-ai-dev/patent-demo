@@ -306,43 +306,6 @@ function featureComponent(text){
 
 }
 
-function processApp(app){
-	var time = Date.now();
-	var demo_app = demo_app_base;
-	Object.keys(app.info).forEach(key => {
-		if (app.info.key)
-			demo_app.info.key = app.info.key
-	})
-
-	demo_app.info.identifier = "DEMO_" + time;
-
-	demo_app.figures = [block_diagram];
-	var components = [];
-
-	demo_app.claims = app.claims;
-	demo_app.claims.forEach(indep_claim =>{
-		var flowchart = {
-			"category": "flowchart",
-			"description": "a process for {DESCRIPTION}",
-			"steps": indep_claim.features,
-		}
-
-		indep_claim.features.forEach(feature => {
-			feature.components.forEach(component => {
-				if (components.indexOf(component) < 0)
-					components.push(component);
-			})
-		})
-
-		demo_app.figures[0].components[0].children[1].children = components.map(component => {return {name: component}});
-		demo_app.figures.push(flowchart);
-	})
-
-	var app_string = JSON.stringify(demo_app).replace(/{DESCRIPTION}/g, demo_app.info.description);
-
-	return JSON.parse(app_string);
-}
-
 var block_diagram = {
 	"category": "diagram",
 	"description": "a block diagram of a computing device",
@@ -429,4 +392,41 @@ var demo_app_base = {
 		"drawings": "1JxSs742bN5-RfN1wf9eS0ZW8gDoN_zST", //https://drive.google.com/file/d/1JxSs742bN5-RfN1wf9eS0ZW8gDoN_zST/
 		"summary": "long",
 	}
+}
+
+function processApp(app){
+	var time = Date.now();
+	var demo_app = demo_app_base;
+	Object.keys(app.info).forEach(key => {
+		if (app.info.key)
+			demo_app.info.key = app.info.key
+	})
+
+	demo_app.info.identifier = "DEMO_" + time;
+
+	demo_app.figures = [block_diagram];
+	var components = [];
+
+	demo_app.claims = app.claims;
+	demo_app.claims.forEach(indep_claim =>{
+		var flowchart = {
+			"category": "flowchart",
+			"description": "a process for {DESCRIPTION}",
+			"steps": indep_claim.features,
+		}
+
+		indep_claim.features.forEach(feature => {
+			feature.components.forEach(component => {
+				if (components.indexOf(component) < 0)
+					components.push(component);
+			})
+		})
+
+		demo_app.figures[0].components[0].children[1].children = components.map(component => {return {name: component}});
+		demo_app.figures.push(flowchart);
+	})
+
+	var app_string = JSON.stringify(demo_app).replace(/{DESCRIPTION}/g, demo_app.info.description);
+
+	return JSON.parse(app_string);
 }
