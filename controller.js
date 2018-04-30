@@ -1,3 +1,91 @@
+var block_diagram = {
+	"category": "diagram",
+	"description": "a block diagram of a computing device",
+	"components": [{
+		"name": "computing device",
+		"children": [
+			{"name": "processor"}, 
+			{"name": "application component", "children": []}, 
+			{"name": "memory"}
+		]
+	}],
+}
+
+var demo_app_base = {
+	"info": {
+		"client": "Demo",
+		"title": "[[Demo Title]]",
+		"field": "[[field of the invention]]",
+		"description": "[[description of the invention]]",
+		"inventor": "[[inventor]]",
+	},
+	"parts": [{
+		"sentences": ["A processor may include an intelligent hardware device, (e.g., a general-purpose processing component, a DSP, a CPU, a microcontroller, an ASIC, an FPGA, a programmable logic device, a discrete gate or transistor logic component, a discrete hardware component, or any combination thereof). In some cases, the processor may be configured to operate a memory array using a memory controller. In other cases, a memory controller may be integrated into processor. The processor may be configured to execute computer-readable instructions stored in a memory to perform various functions. In some examples, a processor may include special purpose components for modem processing, baseband processing, digital signal processing, or transmission processing. In some examples, the processor may comprise a system-on-a-chip."],
+		"topic": "processor",
+		"type": "detail",
+		"figure": "1"
+	}, {
+		"sentences": ["Memory may include RAM, ROM, or a hard disk. The memory may be solid state or a hard disk drive, and may include store computer-readable, computer-executable software including instructions that, when executed, cause a processor to perform various functions described herein. In some cases, the memory may contain, among other things, a BIOS which may control basic hardware or software operation such as the interaction with peripheral components or devices. In some cases, a memory controller may operate memory cells as described herein. In some cases, memory controller may include a row decoder, column decoder, or both. In some cases, memory cells within a memory may store information in the form of a logical state."],
+		"topic": "memory",
+		"type": "detail",
+		"figure": "1"
+	}],
+	"acronyms": [{
+		"abbreviation": "RAM",
+		"definition": "random access memory"
+	}, {
+		"abbreviation": "ROM",
+		"definition": "read only memory"
+	}, {
+		"abbreviation": "ASIC",
+		"definition": "application specific integrated circuit"
+	}, {
+		"abbreviation": "FPGA",
+		"definition": "field programmable gate array"
+	}],
+	"figures": [],
+	"configuration": {
+		"numbering": "true",
+		"indent": "0",
+		"font": "Times New Roman",
+		"header": " ",
+		"footer": "Attorney Docket No. DEMO_001",
+		"template": "1NrOJVVSYyUf_N-q9EH1Fvfu8xn7EN-oi", 
+		"transition": "in some cases",
+		"conclusion": "in accordance with aspects of the present disclosure",
+		"flowchart": "In some examples, these operations may be performed by a processor executing a set of codes to control functional elements of an apparatus. Additionally or alternatively, the processes may be performed using special-purpose hardware. Generally, these operations may be performed according to the methods and processes described in accordance with aspects of the present disclosure. For example, the operations may be composed of various substeps, or may be performed in conjunction with other operations described herein.",
+		"process": [{
+			"category": "process",
+			"type": "method",
+			"verb": "gerund"
+		}, {
+			"category": "process",
+			"type": "apparatus",
+			"verb": "infinitive",
+			"prefix": "",
+			"preamble": "An apparatus for {DESCRIPTION}, comprising: a processor and a memory storing instructions and in electronic communication with the processor, the processor being configured to execute the instructions to:",
+			"transition": "the processor being further configured to execute the instructions to",
+			"summary": "An apparatus for {DESCRIPTION} is described. The apparatus may include a processor, memory in electronic communication with the processor, and instructions stored in the memory. The instructions may be operable to cause the processor to"
+		}, {
+			"category": "process",
+			"type": "non-transitory computer-readable medium",
+			"verb": "infinitive",
+			"prefix": "",
+			"preamble": "A non-transitory computer readable medium storing code for {DESCRIPTION}, the code comprising instructions executable by a processor to:",
+			"transition": "the code further comprising instructions executable by the processor to",
+			"summary": "A non-transitory computer readable medium storing code for {DESCRIPTION} is described. In some examples, the code comprises instructions executable by a processor to:"
+		}, {
+			"category": "process",
+			"type": "apparatus",
+			"verb": "gerund",
+			"prefix": "means for"
+		}],
+		"device": [],
+		"drawings": "1JxSs742bN5-RfN1wf9eS0ZW8gDoN_zST", //https://drive.google.com/file/d/1JxSs742bN5-RfN1wf9eS0ZW8gDoN_zST/
+		"summary": "long",
+	}
+}
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////// VUE ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -307,94 +395,6 @@ function featureComponent(text){
 	else
 		return gerund(words[0]) + ' component';
 
-}
-
-var block_diagram = {
-	"category": "diagram",
-	"description": "a block diagram of a computing device",
-	"components": [{
-		"name": "computing device",
-		"children": [
-			{"name": "processor"}, 
-			{"name": "application component", "children": []}, 
-			{"name": "memory"}
-		]
-	}],
-}
-
-var demo_app_base = {
-	"info": {
-		"client": "Demo",
-		"title": "[[Demo Title]]",
-		"field": "[[field of the invention]]",
-		"description": "[[description of the invention]]",
-		"inventor": "[[inventor]]",
-	},
-	"parts": [{
-		"sentences": ["A processor may include an intelligent hardware device, (e.g., a general-purpose processing component, a DSP, a CPU, a microcontroller, an ASIC, an FPGA, a programmable logic device, a discrete gate or transistor logic component, a discrete hardware component, or any combination thereof). In some cases, the processor may be configured to operate a memory array using a memory controller. In other cases, a memory controller may be integrated into processor. The processor may be configured to execute computer-readable instructions stored in a memory to perform various functions. In some examples, a processor may include special purpose components for modem processing, baseband processing, digital signal processing, or transmission processing. In some examples, the processor may comprise a system-on-a-chip."],
-		"topic": "processor",
-		"type": "detail",
-		"figure": "1"
-	}, {
-		"sentences": ["Memory may include RAM, ROM, or a hard disk. The memory may be solid state or a hard disk drive, and may include store computer-readable, computer-executable software including instructions that, when executed, cause a processor to perform various functions described herein. In some cases, the memory may contain, among other things, a BIOS which may control basic hardware or software operation such as the interaction with peripheral components or devices. In some cases, a memory controller may operate memory cells as described herein. In some cases, memory controller may include a row decoder, column decoder, or both. In some cases, memory cells within a memory may store information in the form of a logical state."],
-		"topic": "memory",
-		"type": "detail",
-		"figure": "1"
-	}],
-	"acronyms": [{
-		"abbreviation": "RAM",
-		"definition": "random access memory"
-	}, {
-		"abbreviation": "ROM",
-		"definition": "read only memory"
-	}, {
-		"abbreviation": "ASIC",
-		"definition": "application specific integrated circuit"
-	}, {
-		"abbreviation": "FPGA",
-		"definition": "field programmable gate array"
-	}],
-	"figures": [],
-	"configuration": {
-		"numbering": "true",
-		"indent": "0",
-		"font": "Times New Roman",
-		"header": " ",
-		"footer": "Attorney Docket No. DEMO_001",
-		"template": "1NrOJVVSYyUf_N-q9EH1Fvfu8xn7EN-oi", 
-		"transition": "in some cases",
-		"conclusion": "in accordance with aspects of the present disclosure",
-		"flowchart": "In some examples, these operations may be performed by a processor executing a set of codes to control functional elements of an apparatus. Additionally or alternatively, the processes may be performed using special-purpose hardware. Generally, these operations may be performed according to the methods and processes described in accordance with aspects of the present disclosure. For example, the operations may be composed of various substeps, or may be performed in conjunction with other operations described herein.",
-		"process": [{
-			"category": "process",
-			"type": "method",
-			"verb": "gerund"
-		}, {
-			"category": "process",
-			"type": "apparatus",
-			"verb": "infinitive",
-			"prefix": "",
-			"preamble": "An apparatus for {DESCRIPTION}, comprising: a processor and a memory storing instructions and in electronic communication with the processor, the processor being configured to execute the instructions to:",
-			"transition": "the processor being further configured to execute the instructions to",
-			"summary": "An apparatus for {DESCRIPTION} is described. The apparatus may include a processor, memory in electronic communication with the processor, and instructions stored in the memory. The instructions may be operable to cause the processor to"
-		}, {
-			"category": "process",
-			"type": "non-transitory computer-readable medium",
-			"verb": "infinitive",
-			"prefix": "",
-			"preamble": "A non-transitory computer readable medium storing code for {DESCRIPTION}, the code comprising instructions executable by a processor to:",
-			"transition": "the code further comprising instructions executable by the processor to",
-			"summary": "A non-transitory computer readable medium storing code for {DESCRIPTION} is described. In some examples, the code comprises instructions executable by a processor to:"
-		}, {
-			"category": "process",
-			"type": "apparatus",
-			"verb": "gerund",
-			"prefix": "means for"
-		}],
-		"device": [],
-		"drawings": "1JxSs742bN5-RfN1wf9eS0ZW8gDoN_zST", //https://drive.google.com/file/d/1JxSs742bN5-RfN1wf9eS0ZW8gDoN_zST/
-		"summary": "long",
-	}
 }
 
 function processApp(app){
