@@ -347,6 +347,8 @@ function clone(object){
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function onSignIn(googleUser) {
+	googleUser = googleUser || {};
+
     // Useful data for your client-side scripts:
     profile = googleUser.getBasicProfile();
     console.log("ID: " + profile.getId()); // Don't send this directly to your server!
